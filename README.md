@@ -11,10 +11,10 @@ A PHP wrapper for [OMDb](http://www.omdbapi.com/) API with object-oriented appro
 ## Installation
 You can install **omdb-php** using [Composer](https://getcomposer.org/).
 
-It is available on [Packagist](https://packagist.org/) as the [`rooxie/omdb-php`](http://packagist.org/packages/rooxie/omdb) package:
+It is available on [Packagist](https://packagist.org/) as the [`rooxie/omdb`](http://packagist.org/packages/rooxie/omdb) package:
 
 ```
-composer require rooxie/omdb-php
+composer require rooxie/omdb
 ```
 
 ## Quickstart
