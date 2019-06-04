@@ -1,0 +1,25 @@
+{
+    "name": "rooxie/omdb",
+    "type": "library",
+    "description": "A PHP wrapper for OMDb API",
+    "keywords": ["omdb", "imdb", "api", "movies", "ratings"],
+    "homepage": "http://github.com/rooxie/omdb-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roman Derlemenko",
+            "email": "romanderlemenko@gmail.com",
+            "homepage": "https://github.com/rooxie"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rooxie\\": "src/"
+        }
+    }
+}

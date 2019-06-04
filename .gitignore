@@ -1,0 +1,8 @@
+# PhpStorm project settings folder
+.idea
+
+# Composer autoload and dependencies
+/vendor
+
+# Dependecies versions locked by current build
+composer.lock
