@@ -22,9 +22,9 @@ class Movie
     protected $title;
 
     /**
-     * @var int
+     * @var string
      *
-     * @example 2001
+     * @example "2001"
      */
     protected $year;
 
@@ -176,11 +176,39 @@ class Movie
     protected $imdbVotes;
 
     /**
+     * @var string
+     *
+     * @example "N/A"
+     */
+    protected $totalSeasons;
+
+    /**
+     * @var string
+     *
+     * @example "N/A"
+     */
+    protected $seriesImdbId;
+
+    /**
+     * @var string
+     *
+     * @example "N/A"
+     */
+    protected $season;
+
+    /**
+     * @var string
+     *
+     * @example "N/A"
+     */
+    protected $episode;
+
+    /**
      * Movie constructor.
      *
      * @param string   $imdbId
      * @param string   $title
-     * @param int      $year
+     * @param string   $year
      * @param string   $rated
      * @param string   $released
      * @param int      $runtime
@@ -202,11 +230,15 @@ class Movie
      * @param int      $rottenTomatoesRating
      * @param float    $imdbRating
      * @param int      $imdbVotes
+     * @param string   $totalSeasons
+     * @param string   $seriesImdbId
+     * @param string   $season
+     * @param string   $episode
      */
     public function __construct(
         string $imdbId,
         string $title,
-        int $year,
+        string $year,
         string $rated,
         string $released,
         int $runtime,
@@ -227,7 +259,11 @@ class Movie
         int $metascore,
         int $rottenTomatoesRating,
         float $imdbRating,
-        int $imdbVotes
+        int $imdbVotes,
+        string $totalSeasons,
+        string $seriesImdbId,
+        string $season,
+        string $episode
     ) {
         $this->imdbId               = $imdbId;
         $this->title                = $title;
@@ -253,6 +289,10 @@ class Movie
         $this->rottenTomatoesRating = $rottenTomatoesRating;
         $this->imdbRating           = $imdbRating;
         $this->imdbVotes            = $imdbVotes;
+        $this->totalSeasons         = $totalSeasons;
+        $this->seriesImdbId         = $seriesImdbId;
+        $this->season               = $season;
+        $this->episode              = $episode;
     }
 
     /**
@@ -272,9 +312,9 @@ class Movie
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getYear(): int
+    public function getYear(): string
     {
         return $this->year;
     }
@@ -448,6 +488,38 @@ class Movie
     }
 
     /**
+     * @return string
+     */
+    public function getTotalSeasons(): string
+    {
+        return $this->totalSeasons;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeriesImdbId(): string
+    {
+        return $this->seriesImdbId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeason(): string
+    {
+        return $this->season;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEpisode(): string
+    {
+        return $this->episode;
+    }
+
+    /**
      * Convert movie object to associative array.
      *
      * @return array
@@ -477,6 +549,7 @@ class Movie
             'RottenTomatoesRating'  => $this->rottenTomatoesRating,
             'IMDbRating'            => $this->imdbRating,
             'IMDbVotes'             => $this->imdbVotes,
+            'TotalSeasons'          => $this->totalSeasons,
         ];
     }
 }

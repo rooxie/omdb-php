@@ -4,12 +4,10 @@ namespace Rooxie;
 
 use Rooxie\Exception\MovieNotFoundException;
 use Rooxie\Model\Movie;
-use Rooxie\Model\Ratings;
 use Rooxie\Exception\ApiErrorException;
 use Rooxie\Exception\InvalidApiKeyException;
 use Rooxie\Exception\IncorrectImdbIdException;
 use Rooxie\Exception\InvalidResponseException;
-use Rooxie\Model\Search;
 
 /**
  * A PHP wrapper for OMDb API.
@@ -209,7 +207,7 @@ class OMDb
         return new Movie(
             $data['imdbID'],
             $data['Title'],
-            intval($data['Year']),
+            $data['Year'],
             $data['Rated'],
             $data['Released'],
             intval($data['Runtime']),
@@ -223,14 +221,18 @@ class OMDb
             $data['Awards'],
             $data['Poster'],
             $data['Type'],
-            $data['DVD'],
-            $data['BoxOffice'],
-            $data['Production'],
-            $data['Website'],
-            $data['Metascore'],
+            $data['DVD'] ?? 'N/A',
+            $data['BoxOffice'] ?? 'N/A',
+            $data['Production'] ?? 'N/A',
+            $data['Website'] ?? 'N/A',
+            $data['Metascore'] === 'N/A' ? 0 : $data['Metascore'],
             $rottenTomatoesRating,
             floatval($data['imdbRating']),
-            intval(str_replace(',', '', $data['imdbVotes']))
+            intval(str_replace(',', '', $data['imdbVotes'])),
+            $data['totalSeasons'] ?? 'N/A',
+            $data['seriesID'] ?? 'N/A',
+            $data['Season'] ?? 'N/A',
+            $data['Episode'] ?? 'N/A'
         );
     }
 }
