@@ -550,6 +550,9 @@ class Movie
             'IMDbRating'            => $this->imdbRating,
             'IMDbVotes'             => $this->imdbVotes,
             'TotalSeasons'          => $this->totalSeasons,
+            'seriesID'              => $this->seriesImdbId,
+            'Season'                => $this->season,
+            'Episode'               => $this->episode,
         ];
     }
 }

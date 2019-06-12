@@ -102,6 +102,10 @@ Array
     [RottenTomatoesRating] => 87
     [IMDbRating] => 8.1
     [IMDbVotes] => 695608
+    [TotalSeasons] => N/A
+    [seriesID] => N/A
+    [Season] => N/A
+    [Episode] => N/A
 )
 ```
 
