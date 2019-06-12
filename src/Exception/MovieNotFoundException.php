@@ -12,11 +12,10 @@ class MovieNotFoundException extends \Exception
     /**
      * MovieNotFoundException constructor.
      *
-     * @param int    $httpCode
      * @param string $title
      */
-    public function __construct(int $httpCode, string $title)
+    public function __construct(string $title)
     {
-        parent::__construct(sprintf('Could not find movie "%s"', $title), $httpCode);
+        parent::__construct(sprintf('Could not find movie "%s"', $title));
     }
 }

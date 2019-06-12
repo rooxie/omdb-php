@@ -1,0 +1,138 @@
+{
+    "titles": {
+        "movie": {
+            "Title": "Pulp Fiction",
+            "Year": "1994",
+            "Rated": "R",
+            "Released": "14 Oct 1994",
+            "Runtime": "154 min",
+            "Genre": "Crime, Drama",
+            "Director": "Quentin Tarantino",
+            "Writer": "Quentin Tarantino (stories), Roger Avary (stories), Quentin Tarantino",
+            "Actors": "Tim Roth, Amanda Plummer, Laura Lovelace, John Travolta",
+            "Plot": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+            "Language": "English, Spanish, French",
+            "Country": "USA",
+            "Awards": "Won 1 Oscar. Another 62 wins & 69 nominations.",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+            "Ratings": [
+                {
+                    "Source": "Internet Movie Database",
+                    "Value": "8.9/10"
+                },
+                {
+                    "Source": "Rotten Tomatoes",
+                    "Value": "92%"
+                },
+                {
+                    "Source": "Metacritic",
+                    "Value": "94/100"
+                }
+            ],
+            "Metascore": "94",
+            "imdbRating": "8.9",
+            "imdbVotes": "1,632,190",
+            "imdbID": "tt0110912",
+            "Type": "movie",
+            "DVD": "19 May 1998",
+            "BoxOffice": "N/A",
+            "Production": "Miramax Films",
+            "Website": "N/A",
+            "Response": "True"
+        },
+        "series": {
+            "Title": "Chernobyl",
+            "Year": "2019",
+            "Rated": "TV-MA",
+            "Released": "06 May 2019",
+            "Runtime": "64 min",
+            "Genre": "Drama",
+            "Director": "N/A",
+            "Writer": "N/A",
+            "Actors": "Jared Harris, Stellan Skarsgård, Paul Ritter, Jessie Buckley",
+            "Plot": "In April 1986, an explosion at the Chernobyl nuclear power plant in the Union of Soviet Socialist Republics becomes one of the world's worst man-made catastrophes.",
+            "Language": "English",
+            "Country": "UK, USA",
+            "Awards": "N/A",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BZWRjNDA0NWQtOGQyNy00Nzg4LWIwYWMtMTk0ZDRlOTg1OGQxXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_SX300.jpg",
+            "Ratings": [
+                {
+                    "Source": "Internet Movie Database",
+                    "Value": "9.5/10"
+                }
+            ],
+            "Metascore": "N/A",
+            "imdbRating": "9.5",
+            "imdbVotes": "4,084",
+            "imdbID": "tt7366338",
+            "Type": "series",
+            "totalSeasons": "1",
+            "Response": "True"
+        },
+        "episode": {
+            "Title": "Chapter One: The Vanishing of Will Byers",
+            "Year": "2016",
+            "Rated": "TV-14",
+            "Released": "15 Jul 2016",
+            "Season": "1",
+            "Episode": "1",
+            "Runtime": "47 min",
+            "Genre": "Drama, Fantasy, Horror, Mystery, Sci-Fi, Thriller",
+            "Director": "Matt Duffer, Ross Duffer",
+            "Writer": "Matt Duffer (created by), Ross Duffer (created by), Matt Duffer, Ross Duffer, Jessie Nickson-Lopez (staff writer)",
+            "Actors": "Winona Ryder, David Harbour, Finn Wolfhard, Millie Bobby Brown",
+            "Plot": "At the U.S. Dept. of Energy an unexplained event occurs. Then when a young Dungeons and Dragons playing boy named Will disappears after a night with his friends, his mother Joyce and the town of Hawkins are plunged into darkness.",
+            "Language": "English",
+            "Country": "USA",
+            "Awards": "N/A",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNzkwMzY5NV5BMl5BanBnXkFtZTgwMTg0ODE0OTE@._V1_SX300.jpg",
+            "Ratings": [
+                {
+                    "Source": "Internet Movie Database",
+                    "Value": "8.6/10"
+                }
+            ],
+            "Metascore": "N/A",
+            "imdbRating": "8.6",
+            "imdbVotes": "14414",
+            "imdbID": "tt4593118",
+            "seriesID": "tt4574334",
+            "Type": "episode",
+            "Response": "True"
+        }
+    },
+    "responses": {
+        "foundByImdbId": {
+            "Params": {"i": "tt0062622"},
+            "Response": "{\"Title\":\"2001: A Space Odyssey\",\"Year\":\"1968\",\"Rated\":\"G\",\"Released\":\"12 May 1968\",\"Runtime\":\"149 min\",\"Genre\":\"Adventure, Sci-Fi\",\"Director\":\"Stanley Kubrick\",\"Writer\":\"Stanley Kubrick (screenplay), Arthur C. Clarke (screenplay)\",\"Actors\":\"Keir Dullea, Gary Lockwood, William Sylvester, Daniel Richter\",\"Plot\":\"After discovering a mysterious artifact buried beneath the lunar surface, mankind sets off on a quest to find its origins with help from intelligent supercomputer HAL 9000.\",\"Language\":\"English, Russian\",\"Country\":\"UK, USA\",\"Awards\":\"Won 1 Oscar. Another 13 wins & 10 nominations.\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BMmNlYzRiNDctZWNhMi00MzI4LThkZTctMTUzMmZkMmFmNThmXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg\",\"Ratings\":[{\"Source\":\"Internet Movie Database\",\"Value\":\"8.3/10\"},{\"Source\":\"Rotten Tomatoes\",\"Value\":\"93%\"},{\"Source\":\"Metacritic\",\"Value\":\"82/100\"}],\"Metascore\":\"82\",\"imdbRating\":\"8.3\",\"imdbVotes\":\"537,872\",\"imdbID\":\"tt0062622\",\"Type\":\"movie\",\"DVD\":\"25 Aug 1998\",\"BoxOffice\":\"$135,620\",\"Production\":\"Warner Bros. Pictures\",\"Website\":\"https://www.warnerbros.com/2001-space-odyssey\",\"Response\":\"True\"}"
+        },
+        "foundByTitle": {
+            "Params": {"t": "fight club"},
+            "Response": "{\"Title\":\"Fight Club\",\"Year\":\"1999\",\"Rated\":\"R\",\"Released\":\"15 Oct 1999\",\"Runtime\":\"139 min\",\"Genre\":\"Drama\",\"Director\":\"David Fincher\",\"Writer\":\"Chuck Palahniuk (novel), Jim Uhls (screenplay)\",\"Actors\":\"Edward Norton, Brad Pitt, Meat Loaf, Zach Grenier\",\"Plot\":\"An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.\",\"Language\":\"English\",\"Country\":\"USA, Germany\",\"Awards\":\"Nominated for 1 Oscar. Another 10 wins & 34 nominations.\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BMjJmYTNkNmItYjYyZC00MGUxLWJhNWMtZDY4Nzc1MDAwMzU5XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg\",\"Ratings\":[{\"Source\":\"Internet Movie Database\",\"Value\":\"8.8/10\"},{\"Source\":\"Rotten Tomatoes\",\"Value\":\"79%\"},{\"Source\":\"Metacritic\",\"Value\":\"66/100\"}],\"Metascore\":\"66\",\"imdbRating\":\"8.8\",\"imdbVotes\":\"1,678,634\",\"imdbID\":\"tt0137523\",\"Type\":\"movie\",\"DVD\":\"06 Jun 2000\",\"BoxOffice\":\"N/A\",\"Production\":\"20th Century Fox\",\"Website\":\"http://www.foxmovies.com/fightclub/\",\"Response\":\"True\"}"
+        },
+        "foundBySearch": {
+            "Params": {"s": "harry potter"},
+            "Response": "{\"Search\":[{\"Title\":\"Harry Potter and the Deathly Hallows: Part 2\",\"Year\":\"2011\",\"imdbID\":\"tt1201607\",\"Type\":\"movie\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg\"},{\"Title\":\"Harry Potter and the Sorcerer's Stone\",\"Year\":\"2001\",\"imdbID\":\"tt0241527\",\"Type\":\"movie\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BNjQ3NWNlNmQtMTE5ZS00MDdmLTlkZjUtZTBlM2UxMGFiMTU3XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_SX300.jpg\"},{\"Title\":\"Harry Potter and the Chamber of Secrets\",\"Year\":\"2002\",\"imdbID\":\"tt0295297\",\"Type\":\"movie\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BMTcxODgwMDkxNV5BMl5BanBnXkFtZTYwMDk2MDg3._V1_SX300.jpg\"},{\"Title\":\"Harry Potter and the Prisoner of Azkaban\",\"Year\":\"2004\",\"imdbID\":\"tt0304141\",\"Type\":\"movie\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BMTY4NTIwODg0N15BMl5BanBnXkFtZTcwOTc0MjEzMw@@._V1_SX300.jpg\"},{\"Title\":\"Harry Potter and the Goblet of Fire\",\"Year\":\"2005\",\"imdbID\":\"tt0330373\",\"Type\":\"movie\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BMTI1NDMyMjExOF5BMl5BanBnXkFtZTcwOTc4MjQzMQ@@._V1_SX300.jpg\"},{\"Title\":\"Harry Potter and the Order of the Phoenix\",\"Year\":\"2007\",\"imdbID\":\"tt0373889\",\"Type\":\"movie\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BMTM0NTczMTUzOV5BMl5BanBnXkFtZTYwMzIxNTg3._V1_SX300.jpg\"},{\"Title\":\"Harry Potter and the Deathly Hallows: Part 1\",\"Year\":\"2010\",\"imdbID\":\"tt0926084\",\"Type\":\"movie\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BMTQ2OTE1Mjk0N15BMl5BanBnXkFtZTcwODE3MDAwNA@@._V1_SX300.jpg\"},{\"Title\":\"Harry Potter and the Half-Blood Prince\",\"Year\":\"2009\",\"imdbID\":\"tt0417741\",\"Type\":\"movie\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_SX300.jpg\"},{\"Title\":\"Harry Potter and the Chamber of Secrets\",\"Year\":\"2002\",\"imdbID\":\"tt0304140\",\"Type\":\"game\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BNTM4NzQ2NjA4NV5BMl5BanBnXkFtZTgwODAwMjE4MDE@._V1_SX300.jpg\"},{\"Title\":\"Harry Potter and the Forbidden Journey\",\"Year\":\"2010\",\"imdbID\":\"tt1756545\",\"Type\":\"movie\",\"Poster\":\"https://m.media-amazon.com/images/M/MV5BNDM0YzMyNGUtMTU1Yy00OTE2LWE5NzYtZDZhMTBmN2RkNjg3XkEyXkFqcGdeQXVyMzU5NjU1MDA@._V1_SX300.jpg\"}],\"totalResults\":\"80\",\"Response\":\"True\"}"
+        },
+        "notFoundByTitle": {
+            "Params": {"t": "qwertytrewq"},
+            "Response": "{\"Response\":\"False\",\"Error\":\"Movie not found!\"}"
+        },
+        "invalidApiKey": {
+            "Params": {"i": "tt0816692"},
+            "Response": "{\"Response\":\"False\",\"Error\":\"Invalid API key!\"}"
+        },
+        "invalidResponse": {
+            "Params": {"i": "tt0816692"},
+            "Response": "{[{}, {}, {}]}"
+        },
+        "incorrectImdbId": {
+            "Params": {"i": "tt0062622333"},
+            "Response": "{\"Response\":\"False\",\"Error\":\"Incorrect IMDb ID.\"}"
+        },
+        "apiError": {
+            "Params": {"i": "tt0246578"},
+            "Response": "{\"Response\":\"False\",\"Error\":\"Something went wrong.\"}"
+        }
+    }
+}

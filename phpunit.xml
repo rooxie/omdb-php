@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false" backupStaticAttributes="false" colors="true" failOnRisky="true" failOnWarning="true" stopOnFailure="false">
+    <testsuites>
+        <testsuite name="OMDb Test Suite">
+            <directory suffix=".php">./tests/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
