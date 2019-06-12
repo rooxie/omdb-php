@@ -13,11 +13,10 @@ class InvalidApiKeyException extends \Exception
     /**
      * InvalidApiKeyException constructor.
      *
-     * @param int    $httpCode
      * @param string $apiKey
      */
-    public function __construct(int $httpCode, string $apiKey)
+    public function __construct(string $apiKey)
     {
-        parent::__construct(sprintf('Invalid or missing API key "%s"', $apiKey), $httpCode);
+        parent::__construct(sprintf('Invalid or missing API key "%s"', $apiKey));
     }
 }

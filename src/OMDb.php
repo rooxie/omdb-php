@@ -51,9 +51,11 @@ class OMDb
      */
     public function getByImdbId(string $imdbId): Movie
     {
-        return $this->createMovieObject(
-            $this->parseResponse('i', $imdbId, '', 0, 0)
-        );
+        $params     = $this->buildParams('i', $imdbId, '', 0, 0);
+        $response   = $this->httpGet($params);
+        $parsed     = $this->parseResponse($response);
+
+        return $this->createMovieObject($parsed);
     }
 
     /**
@@ -73,9 +75,11 @@ class OMDb
      */
     public function getByTitle(string $title, string $type = '', int $year = 0): Movie
     {
-        return $this->createMovieObject(
-            $this->parseResponse('t', $title, $type, $year, 0)
-        );
+        $params     = $this->buildParams('t', $title, $type, $year, 0);
+        $response   = $this->httpGet($params);
+        $parsed     = $this->parseResponse($response);
+
+        return $this->createMovieObject($parsed);
     }
 
     /**
@@ -96,10 +100,15 @@ class OMDb
      */
     public function search(string $title, string $type = '', int $year = 0, int $page = 1): array
     {
-        return $this->parseResponse('s', $title, $type, $year, $page);
+        $params     = $this->buildParams('s', $title, $type, $year, $page);
+        $response   = $this->httpGet($params);
+
+        return $this->parseResponse($response);
     }
 
     /**
+     * Prepare request params for CURL HTTP request.
+     *
      * @param string $getBy
      * @param string $value
      * @param string $type
@@ -107,14 +116,8 @@ class OMDb
      * @param int    $page
      *
      * @return array
-     *
-     * @throws ApiErrorException
-     * @throws IncorrectImdbIdException
-     * @throws InvalidApiKeyException
-     * @throws InvalidResponseException
-     * @throws MovieNotFoundException
      */
-    protected function parseResponse(string $getBy, string $value, string $type, int $year, int $page): array
+    protected function buildParams(string $getBy, string $value, string $type, int $year, int $page): array
     {
         $params = [$getBy => $value];
 
@@ -130,29 +133,47 @@ class OMDb
             $params['page'] = $page;
         }
 
-        $response = $this->httpGet($params);
-        $httpCode = $response['Info']['http_code'];
+        return $params;
+    }
 
-        if (empty($response['Decoded']['Response'])) {
-            throw new InvalidResponseException($httpCode, $value, $response['Output']);
+    /**
+     * Parse fetched response and check for errors.
+     *
+     * @param array $response
+     *
+     * @return array
+     *
+     * @throws ApiErrorException
+     * @throws IncorrectImdbIdException
+     * @throws InvalidApiKeyException
+     * @throws InvalidResponseException
+     * @throws MovieNotFoundException
+     */
+    protected function parseResponse(array $response): array
+    {
+        $value = array_values($response['Params'])[0];
+        $array = json_decode($response['Response'], true);
+
+        if (empty($array['Response'])) {
+            throw new InvalidResponseException($value, $response['Response']);
         }
 
-        if ($response['Decoded']['Response'] === 'False') {
-            switch ($response['Decoded']['Error']) {
+        if ($array['Response'] === 'False') {
+            switch ($array['Error']) {
                 case InvalidApiKeyException::API_MESSAGE_INVALID_KEY:
                 case InvalidApiKeyException::API_MESSAGE_NO_KEY_PROVIDED:
-                    throw new InvalidApiKeyException($httpCode, $this->apiKey);
+                    throw new InvalidApiKeyException($this->apiKey);
                 case IncorrectImdbIdException::API_MESSAGE_INCORRECT_IMDB_ID:
                 case IncorrectImdbIdException::API_MESSAGE_VARCHHAR_CONVERT:
-                    throw new IncorrectImdbIdException($httpCode, $value);
+                    throw new IncorrectImdbIdException($value);
                 case MovieNotFoundException::API_MESSAGE_NOT_FOUND_KEY:
-                    throw new MovieNotFoundException($httpCode, $value);
+                    throw new MovieNotFoundException($value);
                 default:
-                    throw new ApiErrorException($httpCode, $value, $response['Decoded']['Error']);
+                    throw new ApiErrorException($value, $array['Error']);
             }
         }
 
-        return $response['Decoded'];
+        return $array;
     }
 
     /**
@@ -174,20 +195,20 @@ class OMDb
         curl_setopt($ch, CURLOPT_URL, sprintf('%s?apikey=%s&%s', self::API_URL, $this->apiKey, $query));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $output = curl_exec($ch);
-        $info   = curl_getinfo($ch);
+        $response   = curl_exec($ch);
+        $info       = curl_getinfo($ch);
 
         curl_close($ch);
 
         return [
-            'Output'    => $output,
+            'Params'    => $params,
+            'Response'  => $response,
             'Info'      => $info,
-            'Decoded'   => json_decode($output, true),
         ];
     }
 
     /**
-     * Create movie class object from decoded response.
+     * Creates movie class instance from the decoded response.
      *
      * @param array $data
      *

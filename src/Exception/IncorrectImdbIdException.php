@@ -13,11 +13,10 @@ class IncorrectImdbIdException extends \Exception
     /**
      * IncorrectImdbIdException constructor.
      *
-     * @param int    $httpCode
      * @param string $value
      */
-    public function __construct(int $httpCode, string $value)
+    public function __construct(string $value)
     {
-        parent::__construct(sprintf('Incorrect IMDb ID "%s"', $value), $httpCode);
+        parent::__construct(sprintf('Incorrect IMDb ID "%s"', $value));
     }
 }
