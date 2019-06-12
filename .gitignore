@@ -1,6 +1,9 @@
 # PhpStorm project settings folder
 .idea
 
+# PHPUnit result cache file
+.phpunit.result.cache
+
 # Composer autoload and dependencies
 /vendor
 

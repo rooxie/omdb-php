@@ -9,22 +9,22 @@ A PHP wrapper for [OMDb](http://www.omdbapi.com/) API with object-oriented appro
 * PHP CURL extension
 
 ## Installation
-You can install **omdb-php** using [Composer](https://getcomposer.org/).
+Install **omdb-php** using [Composer](https://getcomposer.org/).
 
-It is available on [Packagist](https://packagist.org/) as the [`rooxie/omdb`](http://packagist.org/packages/rooxie/omdb) package:
+It is available on [Packagist](https://packagist.org/) as [`rooxie/omdb`](http://packagist.org/packages/rooxie/omdb) package:
 
 ```
 composer require rooxie/omdb
 ```
 
 ## Quickstart
-Create an instace of base `OMDb` class and provide it with API key:
+*Create an instace of `OMDb` class, providing the API key as the constructor argument*
 ```php
 $omdb = new Rooxie\OMDb('xxxxxxx');
 ```
 
-#### Get by IMDb ID
-One gets an instance of `Movie` model class after fetching movie data vit HTTP request:
+#### Get title by IMDb ID
+*One gets an instance of `Movie` model class after fetching movie data vit HTTP request*
 ```php
 $movie = $omdb->getByImdbId('tt0110912');
 
@@ -32,10 +32,11 @@ echo $movie->getTitle();        // Pulp Fiction
 echo $movie->getReleased();     // 14 Oct 1994
 echo $movie->getRuntime();      // 154
 echo $movie->getImdbRating();   // 8.9
+...
 ```
 
 #### Get by title and other optional arguments
-Same goes for fetching data using movie title. One can also provide optional arguments such as movie type (`movie`, `series` or `episode`) and the release year:
+*Same goes for fetching data using movie title. One can also provide optional arguments such as movie type (`movie`, `series` or `episode`) and the release year*
 ```php
 $movie = $omdb->getByTitle('harry potter', 'movie', 2004);
 
@@ -43,9 +44,10 @@ echo $movie->getTitle();        // Harry Potter and the Prisoner of Azkaban
 echo $movie->getImdbId();       // tt0304141
 echo $movie->getRated();        // PG
 echo $movie->getMetascore();    // 82
+...
 ```
 
-Each object also has a `$movie->toArray()` method:
+*Each object also has a `$movie->toArray()` method*
 ```php
 Array
 (
@@ -104,12 +106,12 @@ Array
 ```
 
 #### Search by title and other optional arguments
-Movie search always returns a raw array from the API and has an optional pagination parameter as the last argument:
+*Movie search method returns a raw array from the API response and has an optional pagination parameter as the last argument*
 ```php
 $movies = $omdb->search('arrival', 'movie', 2016, 1);
 ```
 
-Result:
+*Result*
 ```php
 Array
 (
@@ -212,10 +214,10 @@ Array
 )
 ```
 
-#### Error handling
-Most basic errors have appropriate exceptions.
+#### Error Handling
+The majority of basic errors have corresponding exceptions.
 
-Invalid API key:
+*Invalid API key*
 ```php
 try {
     $movies = $omdb->getByTitle('a clockwork orange');
@@ -224,7 +226,7 @@ try {
 }
 ```
 
-Movie not found:
+*Movie not found*
 ```php
 try {
     $movies = $omdb->getByTitle('zaqxswcde');
@@ -233,7 +235,7 @@ try {
 }
 ```
 
-Incorrect IMDb ID:
+*Incorrect IMDb ID*
 ```php
 try {
     $movies = $omdb->getByImdbId('gj349gj349gj34');
@@ -242,6 +244,6 @@ try {
 }
 ```
 
-Should the API return a valua with a wrong format `InvalidResponseException` will be thrown.
+Should the API return a value with a wrong format, the `InvalidResponseException` will be thrown.
 
-In all the other cases `ApiErrorException` will be thrown.
+In all the other cases the `ApiErrorException` will be thrown.

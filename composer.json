@@ -2,7 +2,7 @@
     "name": "rooxie/omdb",
     "type": "library",
     "description": "A PHP wrapper for OMDb API",
-    "keywords": ["omdb", "imdb", "api", "movies", "ratings"],
+    "keywords": ["omdb", "imdb", "api", "movies", "films","series", "episodes", "ratings"],
     "homepage": "http://github.com/rooxie/omdb-php",
     "license": "MIT",
     "authors": [
@@ -17,9 +17,17 @@
         "ext-curl": "*",
         "ext-json": "*"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
     "autoload": {
         "psr-4": {
             "Rooxie\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rooxie\\Tests\\": "tests/"
         }
     }
 }
