@@ -527,6 +527,7 @@ class Movie
     public function toArray(): array
     {
         return [
+            'ImdbId'                => $this->imdbId,
             'Title'                 => $this->title,
             'Year'                  => $this->year,
             'Rated'                 => $this->rated,
@@ -540,6 +541,7 @@ class Movie
             'Language'              => $this->language,
             'Country'               => $this->country,
             'Awards'                => $this->awards,
+            'Poster'                => $this->posterUrl,
             'Type'                  => $this->type,
             'DVD'                   => $this->dvd,
             'BoxOffice'             => $this->boxOffice,
@@ -550,7 +552,7 @@ class Movie
             'IMDbRating'            => $this->imdbRating,
             'IMDbVotes'             => $this->imdbVotes,
             'TotalSeasons'          => $this->totalSeasons,
-            'seriesID'              => $this->seriesImdbId,
+            'SeriesID'              => $this->seriesImdbId,
             'Season'                => $this->season,
             'Episode'               => $this->episode,
         ];

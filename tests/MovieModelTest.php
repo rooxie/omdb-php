@@ -37,7 +37,7 @@ class MovieModelTest extends BaseTest
         $movie = $this->invokeOmdbMethod('createMovieObject', [$title]);
 
         $this->assertEquals(Movie::class, get_class($movie));
-        $this->assertMovieModel($movie, $title);
+        $this->validateResults($movie, $title);
     }
 
     /**
@@ -86,7 +86,7 @@ class MovieModelTest extends BaseTest
      * @param Movie $movie
      * @param array $data
      */
-    private function assertMovieModel(Movie $movie, array $data): void
+    private function validateResults(Movie $movie, array $data): void
     {
         $rottenTomatoesRating = 0;
 
@@ -97,34 +97,79 @@ class MovieModelTest extends BaseTest
             }
         }
 
-        $this->assertEquals($movie->getImdbId(), $data['imdbID']);
-        $this->assertEquals($movie->getTitle(), $data['Title']);
-        $this->assertEquals($movie->getYear(), $data['Year']);
-        $this->assertEquals($movie->getRated(), $data['Rated']);
-        $this->assertEquals($movie->getReleased(), $data['Released']);
-        $this->assertEquals($movie->getRuntime(), intval($data['Runtime']));
-        $this->assertEquals($movie->getTitle(), $data['Title']);
-        $this->assertEquals($movie->getGenre(), explode(', ', $data['Genre']));
-        $this->assertEquals($movie->getDirector(), explode(', ', $data['Director']));
-        $this->assertEquals($movie->getWriter(), explode(', ', $data['Writer']));
-        $this->assertEquals($movie->getActors(), explode(', ', $data['Actors']));
-        $this->assertEquals($movie->getPlot(), $data['Plot']);
-        $this->assertEquals($movie->getLanguage(), explode(', ', $data['Language']));
-        $this->assertEquals($movie->getCountry(), explode(', ', $data['Country']));
-        $this->assertEquals($movie->getAwards(), $data['Awards']);
-        $this->assertEquals($movie->getPosterUrl(), $data['Poster']);
-        $this->assertEquals($movie->getType(), $data['Type']);
-        $this->assertEquals($movie->getDvd(), $data['DVD'] ?? 'N/A');
-        $this->assertEquals($movie->getBoxOffice(), $data['BoxOffice'] ?? 'N/A');
-        $this->assertEquals($movie->getProduction(), $data['Production'] ?? 'N/A');
-        $this->assertEquals($movie->getWebsite(), $data['Website'] ?? 'N/A');
-        $this->assertEquals($movie->getMetascore(), $data['Metascore'] === 'N/A' ? 0 : $data['Metascore']);
-        $this->assertEquals($movie->getRottenTomatoesRating(), $rottenTomatoesRating);
-        $this->assertEquals($movie->getImdbRating(), floatval($data['imdbRating']));
-        $this->assertEquals($movie->getImdbVotes(), intval(str_replace(',', '', $data['imdbVotes'])));
-        $this->assertEquals($movie->getTotalSeasons(), $data['totalSeasons'] ?? 'N/A');
-        $this->assertEquals($movie->getSeriesImdbId(), $data['seriesID'] ?? 'N/A');
-        $this->assertEquals($movie->getSeason(), $data['Season'] ?? 'N/A');
-        $this->assertEquals($movie->getEpisode(), $data['Episode'] ?? 'N/A');
+        $this->assertMovieModel($movie, [
+            'ImdbId'                => $data['imdbID'],
+            'Title'                 => $data['Title'],
+            'Year'                  => $data['Year'],
+            'Rated'                 => $data['Rated'],
+            'Released'              => $data['Released'],
+            'Runtime'               => intval($data['Runtime']),
+            'Genre'                 => explode(', ', $data['Genre']),
+            'Director'              => explode(', ', $data['Director']),
+            'Writer'                => explode(', ', $data['Writer']),
+            'Actors'                => explode(', ', $data['Actors']),
+            'Plot'                  => $data['Plot'],
+            'Language'              => explode(', ', $data['Language']),
+            'Country'               => explode(', ', $data['Country']),
+            'Awards'                => $data['Awards'],
+            'Poster'                => $data['Poster'],
+            'Type'                  => $data['Type'],
+            'DVD'                   => $data['DVD'] ?? 'N/A',
+            'BoxOffice'             => $data['BoxOffice'] ?? 'N/A',
+            'Production'            => $data['Production'] ?? 'N/A',
+            'Website'               => $data['Website'] ?? 'N/A',
+            'Metascore'             => $data['Metascore'] === 'N/A' ? 0 : $data['Metascore'],
+            'RottenTomatoesRating'  => $rottenTomatoesRating,
+            'IMDbRating'            => floatval($data['imdbRating']),
+            'IMDbVotes'             => intval(str_replace(',', '', $data['imdbVotes'])),
+            'TotalSeasons'          => $data['totalSeasons'] ?? 'N/A',
+            'SeriesID'              => $data['seriesID'] ?? 'N/A',
+            'Season'                => $data['Season'] ?? 'N/A',
+            'Episode'               => $data['Season'] ?? 'N/A',
+        ]);
+
+        $toArray = $movie->toArray();
+        $getters = array_filter(get_class_methods($movie), function (string $name) {
+            return substr($name, 0, 3) === "get";
+        });
+
+        $this->assertEquals(count($toArray), count($getters));
+        $this->assertMovieModel($movie, $toArray);
+    }
+
+    /**
+     * @param Movie $movie
+     * @param array $compare
+     */
+    private function assertMovieModel(Movie $movie, array $compare): void
+    {
+        $this->assertEquals($movie->getImdbId(), $compare['ImdbId']);
+        $this->assertEquals($movie->getTitle(), $compare['Title']);
+        $this->assertEquals($movie->getYear(), $compare['Year']);
+        $this->assertEquals($movie->getRated(), $compare['Rated']);
+        $this->assertEquals($movie->getReleased(), $compare['Released']);
+        $this->assertEquals($movie->getRuntime(), $compare['Runtime']);
+        $this->assertEquals($movie->getGenre(), $compare['Genre']);
+        $this->assertEquals($movie->getDirector(), $compare['Director']);
+        $this->assertEquals($movie->getWriter(), $compare['Writer']);
+        $this->assertEquals($movie->getActors(), $compare['Actors']);
+        $this->assertEquals($movie->getPlot(), $compare['Plot']);
+        $this->assertEquals($movie->getLanguage(), $compare['Language']);
+        $this->assertEquals($movie->getCountry(), $compare['Country']);
+        $this->assertEquals($movie->getAwards(), $compare['Awards']);
+        $this->assertEquals($movie->getPosterUrl(), $compare['Poster']);
+        $this->assertEquals($movie->getType(), $compare['Type']);
+        $this->assertEquals($movie->getDvd(), $compare['DVD']);
+        $this->assertEquals($movie->getBoxOffice(), $compare['BoxOffice']);
+        $this->assertEquals($movie->getProduction(), $compare['Production']);
+        $this->assertEquals($movie->getWebsite(), $compare['Website']);
+        $this->assertEquals($movie->getMetascore(), $compare['Metascore']);
+        $this->assertEquals($movie->getRottenTomatoesRating(), $compare['RottenTomatoesRating']);
+        $this->assertEquals($movie->getImdbRating(), $compare['IMDbRating']);
+        $this->assertEquals($movie->getImdbVotes(), $compare['IMDbVotes']);
+        $this->assertEquals($movie->getTotalSeasons(), $compare['TotalSeasons']);
+        $this->assertEquals($movie->getSeriesImdbId(), $compare['SeriesID']);
+        $this->assertEquals($movie->getSeason(), $compare['Season']);
+        $this->assertEquals($movie->getEpisode(), $compare['Episode']);
     }
 }
