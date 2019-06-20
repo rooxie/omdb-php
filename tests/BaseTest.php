@@ -36,26 +36,13 @@ abstract class BaseTest extends TestCase
     }
 
     /**
-     * Provides access to OMDb::class protected method by method named.
+     * Invoke private method of OMDb::class and returns it's result.
      *
-     * @param string $methodName
+     * @param string $name
+     * @param array  $args
      *
-     * @return ReflectionMethod
+     * @return mixed
      */
-    protected function getOmdbProtectedMethod(string $methodName): ReflectionMethod
-    {
-        try {
-            $omdbRef    = new ReflectionClass(OMDb::class);
-            $methodRef  = $omdbRef->getMethod($methodName);
-
-            $methodRef->setAccessible(true);
-
-            return $methodRef;
-        } catch (ReflectionException $e) {
-            $this->fail("Couldn'n create OMDb class reflection, got: ".$e->getMessage());
-        }
-    }
-
     protected function invokeOmdbMethod(string $name, array $args)
     {
         try {
@@ -66,7 +53,7 @@ abstract class BaseTest extends TestCase
 
             return $method->invokeArgs(new OMDb('.......'), $args);
         } catch (ReflectionException $e) {
-            $this->fail("Couldn'n create OMDb class reflection, got: ".$e->getMessage());
+            $this->fail("Couldn't create OMDb class reflection, got: ".$e->getMessage());
         }
     }
 }

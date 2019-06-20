@@ -81,7 +81,7 @@ class MovieModelTest extends BaseTest
     }
 
     /**
-     * Compares movie data with the data from the created model.
+     * Compare movie data with the data from the created model.
      *
      * @param Movie $movie
      * @param array $data
