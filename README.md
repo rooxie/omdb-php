@@ -51,6 +51,7 @@ echo $movie->getMetascore();    // 82
 ```php
 Array
 (
+    [ImdbId] => tt0246578
     [Title] => Donnie Darko
     [Year] => 2001
     [Rated] => R
@@ -93,6 +94,7 @@ Array
         )
 
     [Awards] => 11 wins & 15 nominations.
+    [Poster] => https://m.media-amazon.com/images/M/MV5BZjZlZDlkYTktMmU1My00ZDBiLWFlNjEtYTBhNjVhOTM4ZjJjXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg
     [Type] => movie
     [DVD] => 19 Mar 2002
     [BoxOffice] => N/A
@@ -103,7 +105,7 @@ Array
     [IMDbRating] => 8.1
     [IMDbVotes] => 695608
     [TotalSeasons] => N/A
-    [seriesID] => N/A
+    [SeriesID] => N/A
     [Season] => N/A
     [Episode] => N/A
 )
