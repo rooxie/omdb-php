@@ -4,16 +4,13 @@
 A PHP wrapper for [OMDb](http://www.omdbapi.com/) API with object-oriented approach and no dependencies.
 
 ## Prerequisites
-* PHP >= 7.1
-* PHP JSON extension
-* PHP CURL extension
+* PHP >= `7.1`
+* PHP `json` extension
+* PHP `curl` extension
 
 ## Installation
-Install **omdb-php** using [Composer](https://getcomposer.org/).
-
-It is available on [Packagist](https://packagist.org/) as [`rooxie/omdb`](http://packagist.org/packages/rooxie/omdb) package:
-
-```
+Install [`omdb-php`](http://packagist.org/packages/rooxie/omdb) using [Composer](https://getcomposer.org/).
+```bash
 composer require rooxie/omdb
 ```
 

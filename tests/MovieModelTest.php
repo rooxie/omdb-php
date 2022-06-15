@@ -1,16 +1,25 @@
 <?php
 
+/*
+ * This file is part of rooxie/omdb.
+ *
+ * (c) Roman Derlemenko <romanderlemenko@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Rooxie\Tests;
 
-use PHPUnit\Framework\Error\Notice;
 use Rooxie\Model\Movie;
+use Throwable;
 
 class MovieModelTest extends BaseTest
 {
     /**
      * Test successful creation of a Movie object.
      */
-    public function testCreateTitlePositive()
+    public function testCreateTitlePositive(): void
     {
         $this->positiveCreateTitleTest($this->sample('titles.movie'));
         $this->positiveCreateTitleTest($this->sample('titles.series'));
@@ -20,7 +29,7 @@ class MovieModelTest extends BaseTest
     /**
      * Test unsuccessful creation of a Movie object.
      */
-    public function testCreateTitleNegative()
+    public function testCreateTitleNegative(): void
     {
         $this->negativeCreateTitleTest($this->sample('titles.movie'));
         $this->negativeCreateTitleTest($this->sample('titles.series'));
@@ -69,10 +78,11 @@ class MovieModelTest extends BaseTest
         ];
 
         foreach ($expected as $key) {
-            unset($title[$key]);
+            $titleCopy = $title;
+            unset($titleCopy[$key]);
             try {
-                $this->positiveCreateTitleTest($title);
-            } catch (Notice $e) {
+                $this->positiveCreateTitleTest($titleCopy);
+            } catch (Throwable $e) {
                 $got[] = $key;
             }
         }
