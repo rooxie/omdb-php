@@ -1,13 +1,20 @@
 <?php
 
+/*
+ * This file is part of rooxie/omdb.
+ *
+ * (c) Roman Derlemenko <romanderlemenko@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Rooxie\Tests;
 
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
-use ReflectionMethod;
 use Rooxie\OMDb;
-use Throwable;
 
 abstract class BaseTest extends TestCase
 {
@@ -16,16 +23,16 @@ abstract class BaseTest extends TestCase
      *
      * @param string $path
      *
-     * @return array|mixed
+     * @return array<string, mixed>
      */
-    protected function sample(string $path)
+    protected function sample(string $path): array
     {
         $data = json_decode(file_get_contents(__DIR__.'/sample.json'), true);
         $part = strtok($path, '.');
 
         while ($part !== false) {
             if (!isset($data[$part])) {
-                $this->fail("Couldn't access '{$path}' in sample data.");
+                $this->fail("Couldn't access '$path' in sample data.");
             }
 
             $data = $data[$part];
