@@ -2,6 +2,7 @@
 .idea
 
 # PHPUnit result cache file
+.phpunit.cache
 .phpunit.result.cache
 
 # Composer autoload and dependencies
