@@ -1,121 +1,55 @@
 # OMDb API PHP Wrapper
 
 ## Introduction
-A PHP wrapper for [OMDb](http://www.omdbapi.com/) API with object-oriented approach and no dependencies.
+A PHP wrapper for [OMDb](http://www.omdbapi.com/) API with [PSR-17 HTTP Factories](https://www.php-fig.org/psr/psr-17/) and [PSR-18 HTTP Client](https://www.php-fig.org/psr/psr-18/).
 
 ## Prerequisites
-* PHP >= `7.1`
-* PHP `json` extension
-* PHP `curl` extension
+* PHP >= `8.1`
+* Any PSR-17 and PSR-18 compatible HTTP client
 
 ## Installation
 Install [`omdb-php`](http://packagist.org/packages/rooxie/omdb) using [Composer](https://getcomposer.org/).
 ```bash
+# Install the package
 composer require rooxie/omdb
+
+# Install the PSR-17 and PSR-18 implementations
+composer require guzzlehttp/guzzle
 ```
 
-## Quickstart
+## Usage
 *Create an instace of `OMDb` class, providing the API key as the constructor argument*
 ```php
-$omdb = new Rooxie\OMDb('xxxxxxx');
+$omdb = new Rooxie\OMDb(
+    new \GuzzleHttp\Client(),
+    new \GuzzleHttp\Psr7\HttpFactory(),
+    'your-api-key'
+);
 ```
 
 #### Get title by IMDb ID
 *One gets an instance of `Movie` model class after fetching movie data vit HTTP request*
 ```php
 $movie = $omdb->getByImdbId('tt0110912');
-
-echo $movie->getTitle();        // Pulp Fiction
-echo $movie->getReleased();     // 14 Oct 1994
-echo $movie->getRuntime();      // 154
-echo $movie->getImdbRating();   // 8.9
-...
+// {"Title":"Pulp Fiction","Year":"1994","Rated":"R","Released":"14 Oct 1994" ...
+echo $movie->getBody()->getContents();
 ```
 
 #### Get by title and other optional arguments
 *Same goes for fetching data using movie title. One can also provide optional arguments such as movie type (`movie`, `series` or `episode`) and the release year*
 ```php
-$movie = $omdb->getByTitle('harry potter', 'movie', 2004);
-
-echo $movie->getTitle();        // Harry Potter and the Prisoner of Azkaban
-echo $movie->getImdbId();       // tt0304141
-echo $movie->getRated();        // PG
-echo $movie->getMetascore();    // 82
-...
-```
-
-*Each object also has a `$movie->toArray()` method*
-```php
-Array
-(
-    [ImdbId] => tt0246578
-    [Title] => Donnie Darko
-    [Year] => 2001
-    [Rated] => R
-    [Released] => 26 Oct 2001
-    [Runtime] => 113
-    [Genre] => Array
-        (
-            [0] => Drama
-            [1] => Sci-Fi
-            [2] => Thriller
-        )
-
-    [Director] => Array
-        (
-            [0] => Richard Kelly
-        )
-
-    [Writer] => Array
-        (
-            [0] => Richard Kelly
-        )
-
-    [Actors] => Array
-        (
-            [0] => Jake Gyllenhaal
-            [1] => Holmes Osborne
-            [2] => Maggie Gyllenhaal
-            [3] => Daveigh Chase
-        )
-
-    [Plot] => A troubled teenager is plagued by visions of a man in a large rabbit suit who manipulates him to commit a series of crimes, after he narrowly escapes a bizarre accident.
-    [Language] => Array
-        (
-            [0] => English
-        )
-
-    [Country] => Array
-        (
-            [0] => USA
-        )
-
-    [Awards] => 11 wins & 15 nominations.
-    [Poster] => https://m.media-amazon.com/images/M/MV5BZjZlZDlkYTktMmU1My00ZDBiLWFlNjEtYTBhNjVhOTM4ZjJjXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg
-    [Type] => movie
-    [DVD] => 19 Mar 2002
-    [BoxOffice] => N/A
-    [Production] => Newmarket Film Group
-    [Website] => http://www.donniedarko.com
-    [Metascore] => 88
-    [RottenTomatoesRating] => 87
-    [IMDbRating] => 8.1
-    [IMDbVotes] => 695608
-    [TotalSeasons] => N/A
-    [SeriesID] => N/A
-    [Season] => N/A
-    [Episode] => N/A
-)
+$movie = $omdb->getByTitle('harry potter', \Rooxie\Enum\TitleType::MOVIE, 2004);
+// {"Title":"Harry Potter and the Prisoner of Azkaban","Year":"2004","Rated":"PG","Released":"04 Jun 2004" ...
+echo $movie->getBody()->getContents();
 ```
 
 #### Search by title and other optional arguments
 *Movie search method returns a raw array from the API response and has an optional pagination parameter as the last argument*
 ```php
-$movies = $omdb->search('arrival', 'movie', 2016, 1);
+$movies = $omdb->search('arrival', \Rooxie\Enum\TitleType::MOVIE, 2016, 1)->getBody()->getContents();
+print_r(json_decode($movies, true));
 ```
-
-*Result*
-```php
+```text
 Array
 (
     [Search] => Array
@@ -217,36 +151,5 @@ Array
 )
 ```
 
-#### Error Handling
-The majority of basic errors have corresponding exceptions.
-
-*Invalid API key*
-```php
-try {
-    $movies = $omdb->getByTitle('a clockwork orange');
-} catch (\Rooxie\Exception\InvalidApiKeyException $e) {
-    echo $e->getMessage(); // Invalid API key "Invalid or missing API key"
-}
-```
-
-*Movie not found*
-```php
-try {
-    $movies = $omdb->getByTitle('zaqxswcde');
-} catch (\Rooxie\Exception\MovieNotFoundException $e) {
-    echo $e->getMessage(); // Could not find movie "zaqxswcde"
-}
-```
-
-*Incorrect IMDb ID*
-```php
-try {
-    $movies = $omdb->getByImdbId('gj349gj349gj34');
-} catch (\Rooxie\Exception\IncorrectImdbIdException $e) {
-    echo $e->getMessage(); // Incorrect IMDb ID "gj349gj349gj34"
-}
-```
-
-Should the API return a value with a wrong format, the `InvalidResponseException` will be thrown.
-
-In all the other cases the `ApiErrorException` will be thrown.
+### Error Handling
+Error handling fully depends on the PSR-18 HTTP client implementation. One can catch exceptions thrown by the HTTP client and handle them accordingly.

@@ -3,8 +3,6 @@
     <testsuites>
         <testsuite name="OMDb Test Suite">
             <file>./tests/BuildParamsTest.php</file>
-            <file>./tests/MovieModelTest.php</file>
-            <file>./tests/ResponseParserTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
